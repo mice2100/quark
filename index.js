@@ -8,10 +8,27 @@ import * as Data from "data.js";
 import {FileSelector, FolderSelector} from "utils.js";
 import * as Package from "package.js";
 import {LogRunner} from "logrunner.js";
+import * as env from "@env";
 
 // a.k.a. main()
-document.ready = function() {
+document.ready = async function () {
   Settings.init(APP_NAME);
+
+  // check for assemble parameter
+  let assembleIdx = -1;
+  for (let arg of env.arguments()) {
+    if (arg.startsWith("assemble=")) {
+      assembleIdx = parseInt(arg.split("=")[1], 10);
+      break;
+    }
+  }
+
+  if (assembleIdx >= 0 && Data.projects?.[assembleIdx]) {
+    await Package.assemble(Data.projects[assembleIdx]);
+    Window.this.close();
+    return;
+  }
+
   document.timer(10, () => Window.this.state = Window.WINDOW_SHOWN);
   Package.checkForImageMagic(function(found) {
     if (found) return;
@@ -71,18 +88,20 @@ export class ProjectView extends Element {
       this.$("form").value = Data.project;
       document.$("button#assemble").state.disabled = !ProjectView.validate(Data.project);
     });
-    if (Data.project)
+    if (Data.project) {
       this.componentUpdate();
+      document.post(new Event("current-project-change"));
+    }
   }
 
   static validate(vals) {
     return vals.name &&
-        vals.exe &&
-        vals.resources &&
-        vals.entryFileExists &&
-        vals.targets &&
-        vals.targets.length &&
-        vals.out;
+      vals.exe &&
+      vals.resources &&
+      vals.entryFileExists &&
+      vals.targets &&
+      vals.targets.length &&
+      vals.out;
   }
 
   renderEmpty() {

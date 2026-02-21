@@ -19,7 +19,14 @@ export class LogRunner extends Element {
   }
 
   static add(text, type = "stdout") {
+    if (type === "stderr") {
+      console.error(typeof text === "string" ? text.trimEnd() : text);
+    } else {
+      console.log(typeof text === "string" ? text.trimEnd() : text);
+    }
+
     const me = LogRunner.instance;
+    if (!me) return;
     me.lines.push({type: type, text: text});
     me.componentUpdate();
   }
@@ -52,6 +59,7 @@ export class LogRunner extends Element {
 
   static clear() {
     const me = LogRunner.instance;
+    if (!me) return;
     me.lines = [];
     me.componentUpdate();
   }
