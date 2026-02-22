@@ -128,7 +128,7 @@ export class ProjectView extends Element {
         <label>Resources</label>
               <FolderSelector(resources) novalue="app resources folder"/>
         <label>Entry file</label>
-              <input|text(entry) novalue="main.htm was not found" readonly/>
+              <input|text(entry) novalue="entry file was not found" readonly/>
         <label>Name</label>
               <input|text(productName) novalue="product name"/>
         <label>Version</label>
@@ -177,12 +177,13 @@ export class ProjectView extends Element {
 
   updateForm(form) {
     const vals = form.value;
-    vals.entryFileExists = fs.$stat(`${vals.resources}/main.htm`) ? true : false;
+    const entryFile = ["main.htm", "index.htm", "main.html", "index.html"].find(f => fs.$stat(`${vals.resources}/${f}`));
+    vals.entryFileExists = !!entryFile;
 
     Data.updateCurrentProject(vals);
 
     this.$("button#assemble").state.disabled = !ProjectView.validate(vals);
-    this.$("input(entry)").value = vals.entryFileExists ? "main.htm found" : "";
+    this.$("input(entry)").value = entryFile ? `${entryFile} found` : "";
   }
 
   ["on click at button#assemble"]() {

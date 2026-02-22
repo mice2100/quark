@@ -1,0 +1,28 @@
+{
+  "window": {
+    "left": 766,
+    "top": 358,
+    "width": 800,
+    "height": 628
+  },
+  "projects": [
+    {
+      "id": "0B97A40C-900F-4E59-B133-49A19842509A",
+      "name": "quark",
+      "exe": "quark",
+      "logo": "/Users/taoliu/Documents/codes/quark/icon.svg",
+      "resources": "/Users/taoliu/Documents/codes/quark",
+      "productName": "Quark",
+      "productVersion": "6.0.3.10",
+      "productDescription": "",
+      "productCopyright": "",
+      "productCompany": "",
+      "targets": [
+        "mac"
+      ],
+      "out": "/Users/taoliu/Downloads",
+      "entry": "index.htm found",
+      "entryFileExists": true
+    }
+  ]
+}

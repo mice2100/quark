@@ -233,28 +233,28 @@ export async function assemble(params) {
       switch (target) {
         case "winX32": {
           await convertSvgToIco(params.logo, icofile);
-          const scapp = checkFile(env.home("../x32/scapp.exe")) || checkFile(env.home("../../bin.win/x32/scapp.exe"));
+          const scapp = checkFile(env.home("../x32/scapp.exe")) || checkFile(env.home("../../bin.win/x32/scapp.exe")) || checkFile(env.home("quark.exe"));
           const exefile = makePath(params.out, ["windows", "x32"], params.exe + ".exe");
           var p = Object.assign({}, params, { icofile: icofile });
           assembleExe(target, scapp, datfile, exefile, p);
         } break;
         case "winX64": {
           await convertSvgToIco(params.logo, icofile);
-          const scapp = checkFile(env.home("../x64/scapp.exe")) || checkFile(env.home("../../bin.win/x64/scapp.exe"));
+          const scapp = checkFile(env.home("../x64/scapp.exe")) || checkFile(env.home("../../bin.win/x64/scapp.exe")) || checkFile(env.home("quark.exe"));
           const exefile = makePath(params.out, ["windows", "x64"], params.exe + ".exe");
           var p = Object.assign({}, params, { icofile: icofile });
           assembleExe(target, scapp, datfile, exefile, p);
         } break;
         case "winARM64": {
           await convertSvgToIco(params.logo, icofile);
-          const scapp = checkFile(env.home("../arm64/scapp.exe")) || checkFile(env.home("../../bin.win/arm64/scapp.exe"));
+          const scapp = checkFile(env.home("../arm64/scapp.exe")) || checkFile(env.home("../../bin.win/arm64/scapp.exe")) || checkFile(env.home("quark.exe"));
           const exefile = makePath(params.out, ["windows", "arm64"], params.exe + ".exe");
           var p = Object.assign({}, params, { icofile: icofile });
           assembleExe(target, scapp, datfile, exefile, p);
         } break;
         case "mac": { // TODO: build proper .app bundle folder here
           await convertSvgToIcns(params.logo, params.out)
-          const scapp = checkFile(env.home("scapp")) || checkFile(env.home("../../bin.osx/scapp"));
+          const scapp = checkFile(env.home("scapp")) || checkFile(env.home("../../bin.osx/scapp")) || checkFile(env.home("quark"));
           const exefile = makePath(params.out, ["macos"], params.exe);
           assembleExe(target, scapp, datfile, exefile, params);
         } break;
