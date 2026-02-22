@@ -18,7 +18,7 @@ This is an updated version of the Sciter.js Quark application, based on Sciter *
    *(The original version only checked for `main.htm`)*
 
 4. **Standalone Assembly Support**  
-   Added a check for an additional quark binary for `scapp`, allowing Quark to be assembled into a fully stand-alone executable by itself - You need to copy packfolder as well to the executable folder. For macos, this is quark.app/Contents/MacOSX/packfolder, for windows, this is quark.exe + packfolder.exe.
+   Added a check for an additional quark binary for `scapp`, allowing Quark to be assembled into a fully stand-alone executable by itself - You need to copy packfolder as well to the executable folder. For macos, this is {out}/macos/quark.app/Contents/MacOSX/packfolder, for windows, this is {out}/windows/packfolder.exe.
 
 ## 🐛 Bug Fixes
 
