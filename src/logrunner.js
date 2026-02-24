@@ -19,11 +19,8 @@ export class LogRunner extends Element {
   }
 
   static add(text, type = "stdout") {
-    if (type === "stderr") {
-      console.error(typeof text === "string" ? text.trimEnd() : text);
-    } else {
-      console.log(typeof text === "string" ? text.trimEnd() : text);
-    }
+    
+    console[type == "stderr" ? "error" : "log"](typeof text === "string" ? text.trimEnd() : text);
 
     const me = LogRunner.instance;
     if (!me) return;

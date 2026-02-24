@@ -14,19 +14,14 @@ import * as env from "@env";
 document.ready = async function () {
   Settings.init(APP_NAME);
 
-  // check for assemble parameter
-  let assembleIdx = -1;
+  // check for the assemble parameter
   for (let arg of env.arguments()) {
-    if (arg.startsWith("assemble=")) {
-      assembleIdx = parseInt(arg.split("=")[1], 10);
-      break;
+    let assembleIdx = scanf("assemble=%d", arg)[0];
+    if (typeof assembleIdx == "number" && Data.projects?.[assembleIdx]) {
+        await Package.assemble(Data.projects[assembleIdx]);
+        Window.this.close();
+        return;
     }
-  }
-
-  if (assembleIdx >= 0 && Data.projects?.[assembleIdx]) {
-    await Package.assemble(Data.projects[assembleIdx]);
-    Window.this.close();
-    return;
   }
 
   document.timer(10, () => Window.this.state = Window.WINDOW_SHOWN);

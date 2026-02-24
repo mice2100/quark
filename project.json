@@ -1,7 +1,7 @@
 {
   "window": {
-    "left": 766,
-    "top": 358,
+    "left": 880,
+    "top": 379,
     "width": 800,
     "height": 628
   },
@@ -10,8 +10,8 @@
       "id": "0B97A40C-900F-4E59-B133-49A19842509A",
       "name": "quark",
       "exe": "quark",
-      "logo": "/Users/taoliu/Documents/codes/quark/icon.svg",
-      "resources": "/Users/taoliu/Documents/codes/quark",
+      "logo": "/Users/taoliu/Documents/codes/quark/src/icon.svg",
+      "resources": "/Users/taoliu/Documents/codes/quark/src",
       "productName": "Quark",
       "productVersion": "6.0.3.10",
       "productDescription": "",
